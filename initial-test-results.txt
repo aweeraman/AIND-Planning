@@ -1,0 +1,31 @@
+************************************************************************
+                          Test Result Summary                           
+************************************************************************
+
+air_cargo_p2 returns the correct initial fluents                       E
+air_cargo_p2 returns the correct goal fluents                          E
+air_cargo_p2 returns the correct initial values                        E
+air_cargo_p3 returns the correct initial fluents                       E
+air_cargo_p3 returns the correct goal fluents                          E
+air_cargo_p3 returns the correct initial values                        E
+AirCargoProblem yields a correct solution when input to breadth_first  E
+Action levels have the correct number of actions                       E
+Literal levels have the correct number of literals                     E
+competing_needs_mutex behaves correctly                                E
+inconsistent_effects_mutex behaves correctly                           E
+inconsistent_support_mutex behaves correctly                           E
+interference_mutex behaves correctly                                   E
+negation_mutex behaves correctly                                       E
+Serialization of mutexes is correct                                    E
+levelsum heuristic behaves correctly                                   E
+air_cargo_p2 returns an object of type problem                         F
+air_cargo_p3 returns an object of type problem                         F
+AirCargoProblem correctly lists possible actions in a given state      F
+AirCargoProblem correctly constructs all possible actions              F
+AirCargoProblem correctly updates state for a given action             F
+AirCargoProblem implements the ignore preconditions heuristic          F
+air_cargo_p1 returns the correct initial fluents                       .
+air_cargo_p1 returns the correct goal fluents                          .
+air_cargo_p1 returns an object of type problem                         .
+air_cargo_p1 returns the correct initial values                        .
+
