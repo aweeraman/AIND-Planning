@@ -515,7 +515,6 @@ class PlanningGraph():
                 for state in states:
                     if goal == state.symbol:
                         level_sum += level
-                        found = True
                         break
                 else:
                     continue
