@@ -309,11 +309,15 @@ class PlanningGraph():
         #   set iff all prerequisite literals for the action hold in S0.  This can be accomplished by testing
         #   to see if a proposed PgNode_a has prenodes that are a subset of the previous S level.  Once an
         #   action node is added, it MUST be connected to the S node instances in the appropriate s_level set.
-        self.a_levels.append(set())
+        a_nodes = set()
+        self.a_levels.append(a_nodes)
         for action in self.all_actions:
             node = PgNode_a(action)
             if node.prenodes.issubset(self.s_levels[level]):
                 self.a_levels[level].add(node)
+                for s_node in self.s_levels[level]:
+                    node.parents.add(s_node)
+                    s_node.children.add(node)
 
     def add_literal_level(self, level):
         """ add an S (literal) level to the Planning Graph
@@ -332,10 +336,13 @@ class PlanningGraph():
         #   may be "added" to the set without fear of duplication.  However, it is important to then correctly create and connect
         #   all of the new S nodes as children of all the A nodes that could produce them, and likewise add the A nodes to the
         #   parent sets of the S nodes
-        self.s_levels.append(set())
+        s_nodes = set()
+        self.s_levels.append(s_nodes)
         for prev_node in self.a_levels[level - 1]:
             for effnode in prev_node.effnodes:
                 self.s_levels[level].add(effnode)
+                prev_node.children.add(effnode)
+                effnode.parents.add(prev_node)
 
     def update_a_mutex(self, nodeset):
         """ Determine and update sibling mutual exclusion for A-level nodes
@@ -507,7 +514,7 @@ class PlanningGraph():
 
         :return: int
         """
-        level_sum = 0
+        level_sum = 1
 
         # for each goal in the problem, determine the level cost, then add them together
         for goal in self.problem.goal:
